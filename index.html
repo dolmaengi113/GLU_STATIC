@@ -1,4 +1,49 @@
-<div class="wrap" style="background:#0b0e14; color:#e8eaed; font-family:'Noto Sans KR', sans-serif; max-width:480px; margin:0 auto; padding:0 0 40px 0; line-height:1.6;">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Static — 손끝에 닿으면</title>
+<style>
+  :root{ color-scheme: dark; }
+  html, body { margin:0; padding:0; background:#05070c; }
+  * { box-sizing: border-box; }
+  body { font-family:'Noto Sans KR', sans-serif; }
+  .page { min-height:100vh; background:#05070c; padding:24px 0; }
+  .wrap { box-shadow:0 0 70px rgba(0,0,0,0.65); border-radius:18px; overflow:hidden; }
+
+  .tab { cursor:pointer; transition: color .2s ease; }
+  .tab:hover { color:#fff; }
+  .tab.active { color:#fff; font-weight:700; border-bottom:2px solid #fff; }
+
+  .subbtn { cursor:pointer; border:none; transition: transform .15s ease, background .2s ease, color .2s ease; }
+  .subbtn:active { transform: scale(0.97); }
+  .subbtn.unsub { background:#1e232d !important; color:#c9ccd1 !important; }
+
+  .rec-card { transition: background .2s ease, transform .2s ease; cursor:pointer; }
+  .rec-card:hover { background:#171c28; transform: translateY(-2px); }
+
+  .thumb-card { cursor:pointer; }
+  .thumb-card .thumb-img { transition: transform .35s ease; }
+  .thumb-card:hover .thumb-img { transform: scale(1.05); }
+
+  .short-item { cursor:pointer; }
+  .short-item .thumb-img { transition: transform .35s ease; }
+  .short-item:hover .thumb-img { transform: scale(1.06); }
+
+  .list-row { transition: background .2s ease; cursor:pointer; }
+  .list-row:hover { background:#171c28; }
+
+  .fade-in { opacity:0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
+  .fade-in.shown { opacity:1; transform:none; }
+
+  ::-webkit-scrollbar { height:6px; width:6px; }
+  ::-webkit-scrollbar-thumb { background:#2a2f3a; border-radius:4px; }
+</style>
+</head>
+<body>
+<div class="page">
+<div class="wrap" style="background:#0b0e14; color:#e8eaed; max-width:480px; margin:0 auto; padding:0 0 40px 0; line-height:1.6;">
 
 <!-- ① 채널 배너 -->
 <div style="position:relative; width:100%; padding-bottom:31%; overflow:hidden;">
@@ -28,11 +73,11 @@
     개설일 2024.03 · 국가 🌍비공개 · 총 조회수 41.2만회
   </div>
 
-  <button style="width:100%; margin-top:14px; padding:11px 0; border:none; border-radius:20px; background:#e8332f; color:#fff; font-weight:700; font-size:14px;">🔔 구독중</button>
+  <button class="subbtn" data-subbed="true" style="width:100%; margin-top:14px; padding:11px 0; border-radius:20px; background:#e8332f; color:#fff; font-weight:700; font-size:14px;">🔔 구독중</button>
 </div>
 
 <!-- ②-1 GLU 세계관 소개 (고정 게시물 느낌) -->
-<div style="padding:18px 16px 0 16px;">
+<div class="fade-in" style="padding:18px 16px 0 16px;">
   <div style="background:#12161f; border-radius:12px; padding:14px; font-size:12px; color:#c9ccd1;">
     <div style="font-size:11px; color:#9aa0a6; margin-bottom:6px;">📌 고정 게시물</div>
     <div style="font-weight:700; color:#fff; font-size:13px; margin-bottom:8px;">GLU (Glide University)</div>
@@ -47,20 +92,20 @@
 
 <!-- ③ 탭바 -->
 <div style="display:flex; gap:22px; padding:18px 16px 10px 16px; border-bottom:1px solid #1e232d; font-size:13.5px; color:#9aa0a6; overflow-x:auto;">
-  <div style="color:#fff; font-weight:700; border-bottom:2px solid #fff; padding-bottom:8px; white-space:nowrap;">홈</div>
-  <div style="padding-bottom:8px; white-space:nowrap;">동영상</div>
-  <div style="padding-bottom:8px; white-space:nowrap;">Shorts</div>
-  <div style="padding-bottom:8px; white-space:nowrap;">재생목록</div>
-  <div style="padding-bottom:8px; white-space:nowrap;">게시물</div>
+  <div class="tab active" style="padding-bottom:8px; white-space:nowrap;">홈</div>
+  <div class="tab" style="padding-bottom:8px; white-space:nowrap;">동영상</div>
+  <div class="tab" style="padding-bottom:8px; white-space:nowrap;">Shorts</div>
+  <div class="tab" style="padding-bottom:8px; white-space:nowrap;">재생목록</div>
+  <div class="tab" style="padding-bottom:8px; white-space:nowrap;">게시물</div>
 </div>
 
 <!-- ④ 추천 채널 (엘리·엔조) -->
-<div style="padding:18px 16px 0 16px;">
+<div class="fade-in" style="padding:18px 16px 0 16px;">
   <div style="height:1px; background:#1e232d; margin-bottom:18px;"></div>
   <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:10px;">추천 채널</div>
   <div style="display:flex; flex-direction:column; gap:10px;">
 
-    <div style="background:#12161f; border-radius:14px; padding:12px; display:flex; align-items:center; gap:14px;">
+    <div class="rec-card" style="background:#12161f; border-radius:14px; padding:12px; display:flex; align-items:center; gap:14px;">
       <div style="flex:0 0 96px; width:96px; height:96px; border-radius:50%; background-image:url('https://raw.githubusercontent.com/dolmaengi113/GLU_STATIC/master/ellie_base.png'); background-size:cover; background-position:50% 15%; background-repeat:no-repeat;"></div>
       <div style="flex:1; min-width:0;">
         <div style="font-size:14.5px; font-weight:700; color:#fff;">Ellie Sullivan</div>
@@ -72,7 +117,7 @@
       </div>
     </div>
 
-    <div style="background:#12161f; border-radius:14px; padding:12px; display:flex; align-items:center; gap:14px;">
+    <div class="rec-card" style="background:#12161f; border-radius:14px; padding:12px; display:flex; align-items:center; gap:14px;">
       <div style="flex:0 0 96px; width:96px; height:96px; border-radius:50%; background-image:url('https://raw.githubusercontent.com/dolmaengi113/GLU_STATIC/master/enzo_base.png'); background-size:cover; background-position:50% 15%; background-repeat:no-repeat;"></div>
       <div style="flex:1; min-width:0;">
         <div style="font-size:14.5px; font-weight:700; color:#fff;">Enzo Ricci</div>
@@ -88,30 +133,30 @@
 </div>
 
 <!-- ⑤ 인기 동영상 (홈탭 그리드) -->
-<div style="padding:22px 16px 0 16px;">
+<div class="fade-in" style="padding:22px 16px 0 16px;">
   <div style="height:1px; background:#1e232d; margin-bottom:18px;"></div>
   <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:10px;">인기 동영상</div>
   <div style="display:flex; flex-direction:column; gap:14px;">
 
-    <div>
+    <div class="thumb-card">
       <div style="position:relative; width:100%; padding-bottom:56.2%; border-radius:10px; overflow:hidden;">
-        <img src="https://raw.githubusercontent.com/dolmaengi113/GLU_STATIC/master/thumnail_long1.png" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">
+        <img class="thumb-img" src="https://raw.githubusercontent.com/dolmaengi113/GLU_STATIC/master/thumnail_long1.png" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">
         <div style="position:absolute; bottom:6px; right:6px; background:rgba(0,0,0,0.75); color:#fff; font-size:10px; padding:2px 5px; border-radius:3px;">9:41</div>
       </div>
       <div style="margin-top:6px; font-size:13px; font-weight:600; color:#fff;">3년째 얼굴 공개 안 하는 이유 (풀버전) 📌</div>
       <div style="font-size:11px; color:#9aa0a6;">조회수 8.9만회 · 3년 전</div>
     </div>
 
-    <div>
+    <div class="thumb-card">
       <div style="position:relative; width:100%; padding-bottom:56.2%; border-radius:10px; overflow:hidden;">
-        <img src="https://raw.githubusercontent.com/dolmaengi113/GLU_STATIC/master/thumnail_long2.png" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">
+        <img class="thumb-img" src="https://raw.githubusercontent.com/dolmaengi113/GLU_STATIC/master/thumnail_long2.png" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">
         <div style="position:absolute; bottom:6px; right:6px; background:rgba(0,0,0,0.75); color:#fff; font-size:10px; padding:2px 5px; border-radius:3px;">6:18</div>
       </div>
       <div style="margin-top:6px; font-size:13px; font-weight:600; color:#fff;">...아니, 아무것도 아니야 [풀버전]</div>
       <div style="font-size:11px; color:#9aa0a6;">조회수 6.1만회 · 1주 전</div>
     </div>
 
-    <div style="display:flex; gap:10px; align-items:center; background:#12161f; border-radius:10px; padding:10px;">
+    <div class="list-row" style="display:flex; gap:10px; align-items:center; background:#12161f; border-radius:10px; padding:10px;">
       <div style="font-size:22px;">🎙️</div>
       <div style="flex:1;">
         <div style="font-size:12.5px; font-weight:600; color:#fff;">오늘 목소리 왜 이렇게 떨려요? (feat. 구독자 반응 모음)</div>
@@ -119,7 +164,7 @@
       </div>
     </div>
 
-    <div style="display:flex; gap:10px; align-items:center; background:#12161f; border-radius:10px; padding:10px;">
+    <div class="list-row" style="display:flex; gap:10px; align-items:center; background:#12161f; border-radius:10px; padding:10px;">
       <div style="font-size:22px;">🎙️</div>
       <div style="flex:1;">
         <div style="font-size:12.5px; font-weight:600; color:#fff;">낮과 밤이 다른 사람 특징 TOP 3 (본인 얘기 아님)</div>
@@ -127,7 +172,7 @@
       </div>
     </div>
 
-    <div style="display:flex; gap:10px; align-items:center; background:#12161f; border-radius:10px; padding:10px;">
+    <div class="list-row" style="display:flex; gap:10px; align-items:center; background:#12161f; border-radius:10px; padding:10px;">
       <div style="font-size:22px;">🔴</div>
       <div style="flex:1;">
         <div style="font-size:12.5px; font-weight:600; color:#fff;">솔직히 말할게요, 오늘은 평소랑 좀 다릅니다 (LIVE 다시보기)</div>
@@ -139,35 +184,35 @@
 </div>
 
 <!-- ⑥ Shorts -->
-<div style="padding:22px 16px 0 16px;">
+<div class="fade-in" style="padding:22px 16px 0 16px;">
   <div style="height:1px; background:#1e232d; margin-bottom:18px;"></div>
   <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:10px;">Shorts</div>
   <div style="display:flex; gap:10px; overflow-x:auto;">
 
-    <div style="flex-shrink:0; width:110px;">
+    <div class="short-item" style="flex-shrink:0; width:110px;">
       <div style="position:relative; width:100%; padding-bottom:177%; border-radius:10px; overflow:hidden;">
-        <img src="https://raw.githubusercontent.com/dolmaengi113/GLU_STATIC/master/thumnail_short1.png" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">
+        <img class="thumb-img" src="https://raw.githubusercontent.com/dolmaengi113/GLU_STATIC/master/thumnail_short2.png" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">
       </div>
       <div style="margin-top:5px; font-size:10.5px; color:#c9ccd1;">침묵 3초 챌린지 실패</div>
       <div style="font-size:9.5px; color:#9aa0a6;">7.4만회</div>
     </div>
 
-    <div style="flex-shrink:0; width:110px;">
+    <div class="short-item" style="flex-shrink:0; width:110px;">
       <div style="position:relative; width:100%; padding-bottom:177%; border-radius:10px; overflow:hidden;">
-        <img src="https://raw.githubusercontent.com/dolmaengi113/GLU_STATIC/master/thumnail_short2.png" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">
+        <img class="thumb-img" src="https://raw.githubusercontent.com/dolmaengi113/GLU_STATIC/master/thumnail_short1.png" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">
       </div>
       <div style="margin-top:5px; font-size:10.5px; color:#c9ccd1;">귀 안 빨개졌다니까요 ㅋㅋ</div>
       <div style="font-size:9.5px; color:#9aa0a6;">12.3만회</div>
     </div>
 
-    <div style="flex-shrink:0; width:110px;">
+    <div class="short-item" style="flex-shrink:0; width:110px;">
       <div style="width:100%; padding-bottom:177%; border-radius:10px; background:#12161f; position:relative;">
         <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; font-size:11px; color:#c9ccd1; padding:8px;">말 끊는 버릇 지적당함</div>
       </div>
       <div style="margin-top:5px; font-size:9.5px; color:#9aa0a6;">9.8만회</div>
     </div>
 
-    <div style="flex-shrink:0; width:110px;">
+    <div class="short-item" style="flex-shrink:0; width:110px;">
       <div style="width:100%; padding-bottom:177%; border-radius:10px; background:#12161f; position:relative;">
         <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; font-size:11px; color:#c9ccd1; padding:8px;">이 목소리 어디서 들어본 것 같은데?</div>
       </div>
@@ -178,7 +223,7 @@
 </div>
 
 <!-- ⑦ 재생목록 = 플레이 가이드 -->
-<div style="padding:22px 16px 0 16px;">
+<div class="fade-in" style="padding:22px 16px 0 16px;">
   <div style="height:1px; background:#1e232d; margin-bottom:18px;"></div>
   <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:10px;">재생목록 · 플레이 가이드.zip</div>
   <div style="background:#12161f; border-radius:12px; padding:6px 14px; display:flex; flex-direction:column;">
@@ -236,7 +281,7 @@
 </div>
 
 <!-- ⑧ 게시물 = 프로필 카드 + 댓글 시뮬레이션 -->
-<div style="padding:22px 0 0 0;">
+<div class="fade-in" style="padding:22px 0 0 0;">
   <div style="height:1px; background:#1e232d; margin:0 16px 18px 16px;"></div>
   <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:10px; padding:0 16px;">게시물</div>
 
@@ -277,7 +322,7 @@
 </div>
 
 <!-- ⑧-1 도입부 3종 안내 -->
-<div style="padding:26px 16px 0 16px;">
+<div class="fade-in" style="padding:26px 16px 0 16px;">
   <div style="height:1px; background:#1e232d; margin-bottom:18px;"></div>
   <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:4px;">재생목록 · 시작하기 전에.zip</div>
   <div style="font-size:11px; color:#9aa0a6; margin-bottom:10px;">3가지 도입부 중 하나를 골라 시작하세요. 관계·상황이 전부 다르니 마음에 드는 쪽으로!</div>
@@ -312,7 +357,7 @@
 </div>
 
 <!-- ⑨ CTA 마무리 -->
-<div style="padding:26px 16px 0 16px;">
+<div class="fade-in" style="padding:26px 16px 0 16px;">
   <div style="background:linear-gradient(135deg,#12161f,#1a2030); border-radius:14px; padding:18px; text-align:center;">
     <div style="font-size:13px; color:#c9ccd1;">🔔 새 알림</div>
     <div style="font-size:14.5px; font-weight:700; color:#fff; margin-top:6px;">오늘 밤, 당신의 이어폰에<br>낯선 목소리가 도착했습니다.</div>
@@ -321,3 +366,43 @@
 </div>
 
 </div>
+</div>
+
+<script>
+  // 탭 전환
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.addEventListener('click', function(){
+      document.querySelectorAll('.tab').forEach(function(x){ x.classList.remove('active'); });
+      t.classList.add('active');
+    });
+  });
+
+  // 구독 버튼 토글
+  var sub = document.querySelector('.subbtn');
+  if (sub) {
+    sub.addEventListener('click', function(){
+      var subbed = sub.dataset.subbed !== 'false';
+      if (subbed) {
+        sub.textContent = '🔔 구독';
+        sub.classList.add('unsub');
+        sub.dataset.subbed = 'false';
+      } else {
+        sub.textContent = '🔔 구독중';
+        sub.classList.remove('unsub');
+        sub.dataset.subbed = 'true';
+      }
+    });
+  }
+
+  // 스크롤 등장 애니메이션
+  try {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('shown'); }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-in').forEach(function(el){ io.observe(el); });
+  } catch (e) {}
+</script>
+</body>
+</html>
